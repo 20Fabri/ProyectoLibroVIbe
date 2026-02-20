@@ -15,4 +15,8 @@ public class CategoriaService {
     public List<Categoria> listarCategorias() {
         return categoriaRepository.findAll();
     }
+ // NUEVO MÉTODO - Guardar: Para registrar o actualizar categorías
+    public void guardar(Categoria categoria) {
+        categoriaRepository.save(categoria);
+    }
 }

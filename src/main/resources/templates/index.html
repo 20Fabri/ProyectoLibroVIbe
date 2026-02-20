@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibroVibe - Tu Librería Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .book-card { transition: transform 0.3s; border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .book-card:hover { transform: translateY(-10px); }
+        .card-img-top { height: 350px; object-fit: cover; border-radius: 8px 8px 0 0; }
+        .navbar-brand { font-weight: bold; font-size: 1.5rem; color: #2c3e50 !important; }
+        .price-tag { font-size: 1.25rem; color: #e67e22; font-weight: bold; }
+        .category-badge { background-color: #f8f9fa; color: #6c757d; font-size: 0.8rem; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-white bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">📚 LibroVibe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="/libros">Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ventas">Mis Compras</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="/login" class="btn btn-outline-primary shadow-sm">
+                            <i class="bi bi-person-circle"></i> Iniciar Sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-5 bg-dark text-white text-center mb-5" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+        <div class="container py-5">
+            <h1 class="display-4 fw-bold">Encuentra tu próxima aventura</h1>
+            <p class="lead">Miles de libros a un solo clic de distancia.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+            <div class="col" th:each="libro : ${libros}">
+                <div class="card h-100 book-card text-center">
+                    <img th:src="${libro.imagenUrl}" class="card-img-top" alt="Portada del libro">
+                    
+                    <div class="card-body">
+                        <span class="badge category-badge mb-2" th:text="${libro.categoria.nombre}">Categoría</span>
+                        <h5 class="card-title text-truncate" th:text="${libro.titulo}">Título del Libro</h5>
+                        <p class="card-text text-muted small" th:text="${libro.autor}">Autor</p>
+                        <div class="price-tag mb-3" th:text="'S/ ' + ${#numbers.formatDecimal(libro.precio, 1, 2)}">S/ 0.00</div>
+                    </div>
+                    
+                    <div class="card-footer bg-transparent border-0 pb-3">
+                        <a th:href="@{/ventas/nueva(idLibro=${libro.idLibro})}" class="btn btn-primary w-100 shadow-sm">
+                            <i class="bi bi-cart-plus"></i> Comprar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-5 bg-white border-top mt-5">
+        <div class="container text-center text-muted">
+            <p>&copy; 2026 LibroVibe. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
