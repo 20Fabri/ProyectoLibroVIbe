@@ -11,29 +11,42 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    // 1. Listar todos
+	
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    // 2. Guardar (sirve para insertar y actualizar)
-    public Usuario guardarUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public void guardarUsuario(Usuario usuario) {
+        // Lógica de protección de contraseña
+        if (usuario.getIdUsuario() > 0) {
+            Usuario usuarioExistente = usuarioRepository.findById(usuario.getIdUsuario()).orElse(null);
+            if (usuarioExistente != null) {
+                if (usuario.getPassword() == null || usuario.getPassword().isEmpty()) {
+                    usuario.setPassword(usuarioExistente.getPassword());
+                }
+            }
+        }
+        usuarioRepository.save(usuario);
     }
 
-    // 3. Buscar por ID (NUEVO - necesario para editar o ver detalles)
-    public Usuario buscarPorId(Long id) {
+    // Uso de int coincidiendo con tu modelo
+    public Usuario buscarPorId(int id) {
         return usuarioRepository.findById(id).orElse(null);
     }
 
-    // 4. Eliminar (NUEVO - necesario para el Controller)
-    public void eliminarUsuario(Long id) {
+    public void eliminarUsuario(int id) {
         usuarioRepository.deleteById(id);
     }
 
-    // 5. Buscar por Username (para el Login)
     public Usuario buscarPorUsername(String username) {
         return usuarioRepository.findByUsername(username);
+    }
+    
+    public Usuario validarUsuario(String email, String password) {
+        Usuario user = usuarioRepository.findByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 }

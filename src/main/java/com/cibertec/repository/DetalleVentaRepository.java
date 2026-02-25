@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.cibertec.model.DetalleVenta;
 
 @Repository
-public interface DetalleVentaRepository extends JpaRepository<DetalleVenta, Long> {
+public interface DetalleVentaRepository extends JpaRepository<DetalleVenta, Integer> {
 }

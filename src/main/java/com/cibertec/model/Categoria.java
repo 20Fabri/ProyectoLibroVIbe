@@ -10,7 +10,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria") // Coincide con tu script: id_categoria INT
-    private Long idCategoria;
+    private int idCategoria;
 
     @Column(name = "nombre")
     private String nombre;
@@ -27,11 +27,11 @@ public class Categoria {
     }
 
     // Getters y Setters
-    public Long getIdCategoria() {
+    public int getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Long idCategoria) {
+    public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }
 

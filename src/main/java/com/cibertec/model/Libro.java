@@ -8,7 +8,7 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_libro") // Coincide con tu SQL
-    private Long idLibro;
+    private int idLibro;
 
     @Column(name = "titulo")
     private String titulo;
@@ -33,8 +33,8 @@ public class Libro {
     public Libro() {}
 
     // Getters y Setters
-    public Long getIdLibro() { return idLibro; }
-    public void setIdLibro(Long idLibro) { this.idLibro = idLibro; }
+    public int getIdLibro() { return idLibro; }
+    public void setIdLibro(int idLibro) { this.idLibro = idLibro; }
 
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }

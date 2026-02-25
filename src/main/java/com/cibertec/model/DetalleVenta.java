@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class DetalleVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDetalle;
+    private int idDetalle;
 
     @ManyToOne
     @JoinColumn(name = "id_venta")
@@ -39,11 +39,11 @@ public class DetalleVenta {
 		super();
 	}
 
-	public Long getIdDetalle() {
+	public int getIdDetalle() {
 		return idDetalle;
 	}
 
-	public void setIdDetalle(Long idDetalle) {
+	public void setIdDetalle(int idDetalle) {
 		this.idDetalle = idDetalle;
 	}
 

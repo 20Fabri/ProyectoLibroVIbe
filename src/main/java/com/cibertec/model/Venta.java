@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idVenta;
+    private int idVenta;
 
     @Column(name = "fecha_venta", updatable = false)
     private LocalDateTime fechaVenta = LocalDateTime.now();
@@ -37,11 +37,11 @@ public class Venta {
 		super();
 	}
 
-	public Long getIdVenta() {
+	public int getIdVenta() {
 		return idVenta;
 	}
 
-	public void setIdVenta(Long idVenta) {
+	public void setIdVenta(int idVenta) {
 		this.idVenta = idVenta;
 	}
 

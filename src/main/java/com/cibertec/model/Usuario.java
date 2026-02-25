@@ -9,7 +9,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario") // Coincide con tu SQL: id_usuario
-    private Long idUsuario;
+    private int idUsuario;
 
     @Column(name = "username")
     private String username;
@@ -32,11 +32,11 @@ public class Usuario {
     }
 
     // Getters y Setters
-    public Long getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 

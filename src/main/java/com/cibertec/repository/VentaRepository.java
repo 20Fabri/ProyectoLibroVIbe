@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.cibertec.model.Venta;
 
 @Repository
-public interface VentaRepository extends JpaRepository<Venta, Long> {
+public interface VentaRepository extends JpaRepository<Venta, Integer> {
 }
 

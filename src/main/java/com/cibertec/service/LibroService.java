@@ -21,11 +21,11 @@ public class LibroService { // Clase directa, sin interface
         return libroRepository.save(libro);
     }
 
-    public Libro buscarPorId(Long id) {
+    public Libro buscarPorId(int id) {
         return libroRepository.findById(id).orElse(null);
     }
 
-    public void eliminar(Long id) {
+    public void eliminar(int id) {
         libroRepository.deleteById(id);
     }
 }
