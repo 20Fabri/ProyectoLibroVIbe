@@ -1,7 +1,8 @@
 package com.cibertec.model;
 
 import java.time.LocalDateTime;
-
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -21,9 +22,8 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idVenta;
-
     @Column(name = "fecha_venta", updatable = false)
-    private LocalDateTime fechaVenta = LocalDateTime.now();
+    private LocalDateTime fechaVenta;
     private Double totalVenta;
 
     @ManyToOne

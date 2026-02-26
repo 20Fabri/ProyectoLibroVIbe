@@ -56,7 +56,7 @@
             color: white;
         }
 
-        /* Botón Flotante Carrito (Lógica Corregida) */
+        /* Botón Flotante Carrito */
         .cart-fab {
             position: fixed;
             bottom: 30px; right: 30px;
@@ -119,8 +119,7 @@
 </head>
 <body>
 
-    <a th:if="${session.usuarioLogueado == null or session.usuarioLogueado.rol.name() != 'ROLE_ADMIN'}" 
-       th:href="@{/ventas/carrito}" class="cart-fab" data-aos="zoom-in" data-aos-delay="500">
+    <a th:href="@{/ventas/carrito}" class="cart-fab" data-aos="zoom-in" data-aos-delay="500">
         <i class="bi bi-bag-heart-fill fs-3"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow" 
               th:text="${session.itemsCarrito != null ? session.itemsCarrito.size() : '0'}">0</span>
@@ -157,7 +156,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2 mt-3 rounded-4">
                             <li><a class="dropdown-item rounded-3" th:href="@{/perfil}"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
-                            <li th:if="${session.usuarioLogueado.rol.name() == 'ROLE_USER'}">
+                            <li th:if="${session.usuarioLogueado.rol.name() == 'ROLE_CLIENTE'}">
                                 <a class="dropdown-item rounded-3" th:href="@{/mis-compras}"><i class="bi bi-box-seam me-2"></i>Mis Compras</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
@@ -193,7 +192,7 @@
                         
                         <div th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.name() == 'ROLE_ADMIN'}" 
                              class="admin-tools">
-                            <a th:href="@{/libros/editar/{id}(id=${libro.idLibro}, source='index')}" class="btn-tool text-primary">
+                            <a th:href="@{/libros/editar/{id}(id=${libro.idLibro})}" class="btn-tool text-primary">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
                             <a th:href="@{/libros/eliminar/{id}(id=${libro.idLibro})}" class="btn-tool text-danger" 
